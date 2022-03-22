@@ -18,6 +18,9 @@
 # define WIDTH 480
 # define HEIGHT 320
 
+# define PLAYER_X game->player->x
+# define PLAYER_Y game->player->y
+
 typedef struct s_mlx
 {
 	void	*mlx_ptr;
