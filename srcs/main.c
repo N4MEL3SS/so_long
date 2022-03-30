@@ -12,7 +12,9 @@ int	main(void)
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, WIDTH, HEIGHT, "Game");
 	game->mlx = &mlx;
 	img_init(game);
-	mlx_key_hook(mlx.win_ptr, key_control, game);
+	key_array_init(game->player->key_array);
+	mlx_hook(mlx.win_ptr, KEY_PRESS, 1L << 0, key_control_press, game);
+	mlx_hook(mlx.win_ptr, KEY_RELEASE, 1L << 1, key_control_release, game);
 	mlx_hook(mlx.win_ptr, DESTROY, 0, close_win, &mlx);
 	mlx_loop_hook(game->mlx->mlx_ptr, render_loop, game);
 	mlx_loop(mlx.mlx_ptr);

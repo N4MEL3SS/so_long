@@ -16,10 +16,12 @@
 # define FALSE 0
 
 # define WIDTH 480
-# define HEIGHT 320
+# define HEIGHT 480
 
 # define PLAYER_X game->player->x
 # define PLAYER_Y game->player->y
+# define KEY_ARR_SIZE 4
+# define STEP 3
 
 typedef struct s_mlx
 {
@@ -38,6 +40,9 @@ typedef struct s_player
 {
 	int		x;
 	int		y;
+	int		key_array[KEY_ARR_SIZE];
+	int		step;
+	int		shift_flag;
 	t_img	*player;
 }				t_player;
 
@@ -49,10 +54,15 @@ typedef struct s_game
 
 t_game	*game_init(void);
 void	img_init(t_game *game);
+int		*key_array_init(int *key_array);
 
-int		key_control(int key, t_game *game);
+int		key_control_press(int key, t_game *game);
+int		key_control_release(int key, t_game *game);
+
+void	wasd_key_array(const int *array, t_player *player);
 
 int		render_loop(t_game *game);
+void	render_control(t_game *game);
 
 int		close_win(t_mlx *game);
 int		close_esc(int keycode, t_mlx *game);

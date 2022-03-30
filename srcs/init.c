@@ -23,6 +23,18 @@ t_game	*game_init(void)
 	game->player = (t_player *)malloc(sizeof(t_player));
 	game->player->x = 0;
 	game->player->y = 0;
+	game->player->step = STEP;
+	game->player->shift_flag = 0;
 	game->player->player = (t_img *)malloc(sizeof(t_img));
 	return (game);
+}
+
+int	*key_array_init(int *key_array)
+{
+	int		i;
+
+	i = -1;
+	while (++i < KEY_ARR_SIZE)
+		key_array[i] = 0;
+	return (key_array);
 }
