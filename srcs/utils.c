@@ -19,6 +19,7 @@ void	ft_putendl(const char *str)
 void	terminate(const char *str, void *address)
 {
 	free(address);
+	address = NULL;
 	ft_putendl(str);
 	exit(EXIT_FAILURE);
 }
