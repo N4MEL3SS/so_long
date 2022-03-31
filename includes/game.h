@@ -20,8 +20,11 @@
 
 # define PLAYER_X game->player->x
 # define PLAYER_Y game->player->y
+# define SHIFT_FLAG game->player->shift_flag
+
 # define KEY_ARR_SIZE 4
 # define STEP 2
+# define STEP_RUN 2 * STEP
 
 typedef struct s_player
 {
@@ -40,6 +43,9 @@ typedef struct s_game
 	t_sprite	*sprite;
 }				t_game;
 
+int		check_arg(int argc, char **map_file);
+char	*get_next_line(int fd);
+
 void	game_init(t_game *game);
 
 void	hook(t_game *game);
@@ -47,12 +53,13 @@ void	hook(t_game *game);
 int		key_control_press(int key, t_game *game);
 int		key_control_release(int key, t_game *game);
 
-void	wasd_key_array(const int *array, t_player *player);
+void	player_moving(const int *array, t_player *player);
 
 int		render_loop(t_game *game);
 
 int		close_win(t_game *game);
 
+size_t	ft_strlen(const char *str);
 void	terminate(const char *str, void *address);
 
 #endif //GAME_H
