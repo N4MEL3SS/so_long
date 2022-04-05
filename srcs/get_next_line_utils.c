@@ -1,10 +1,10 @@
 #include "get_next_line.h"
 
-char	*buff_str_init(void)
+char	*buff_str_init(int buff_size)
 {
 	char	*buff_str;
 
-	buff_str = malloc(sizeof(char) * ((ssize_t)BUFFER_SIZE + 1));
+	buff_str = malloc(sizeof(char) * ((ssize_t)buff_size + 1));
 	if (!buff_str)
 		return (NULL);
 	*buff_str = '\0';

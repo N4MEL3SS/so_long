@@ -21,6 +21,16 @@ void	ft_putendl(const char *str)
 	write(1, "\n", 1);
 }
 
+void	*mem_alloc(size_t size)
+{
+	void	*ptr;
+
+	ptr = malloc(size);
+	if (!ptr)
+		terminate(ERR_MALLOC, ptr);
+	return (ptr);
+}
+
 void	terminate(const char *str, void *address)
 {
 	free(address);

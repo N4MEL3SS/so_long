@@ -20,7 +20,7 @@ int	key_control_press(int key, t_game *game)
 {
 	if (key == L_SHIFT_KEY && !SHIFT_FLAG++)
 		game->player->step = STEP_RUN;
-	if (key == A_KEY || key == D_KEY || key == W_KEY || key == S_KEY)
+	else if (key == A_KEY || key == D_KEY || key == W_KEY || key == S_KEY)
 		game->player->key_array[key % 10] = game->player->step;
 	else if (key == ESC)
 		close_win(game);
@@ -31,7 +31,7 @@ int	key_control_release(int key, t_game *game)
 {
 	if (key == L_SHIFT_KEY && SHIFT_FLAG--)
 		game->player->step = STEP;
-	if (key == A_KEY || key == D_KEY || key == W_KEY || key == S_KEY)
+	else if (key == A_KEY || key == D_KEY || key == W_KEY || key == S_KEY)
 		game->player->key_array[key % 10] = 0;
 	return (0);
 }

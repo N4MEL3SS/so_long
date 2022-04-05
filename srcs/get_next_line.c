@@ -1,6 +1,6 @@
 #include "get_next_line.h"
 
-char	*get_read_file(int fd, char *buff_str)
+char	*get_read_file(int fd, char *buff_str, int buff_size)
 {
 	char		*line_str;
 	ssize_t		line_len;
@@ -16,7 +16,7 @@ char	*get_read_file(int fd, char *buff_str)
 		{
 			full_len += line_len;
 			line_str = ft_str_join(line_str, buff_str, full_len);
-			buff_len = read(fd, buff_str, BUFFER_SIZE);
+			buff_len = read(fd, buff_str, buff_size);
 			if (!line_str || buff_len == -1)
 				return (NULL);
 			*(buff_str + buff_len) = '\0';
@@ -27,7 +27,7 @@ char	*get_read_file(int fd, char *buff_str)
 	return (line_str);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int buff_size)
 {
 	static char		*buff_str;
 	char			*line_str;
@@ -36,8 +36,8 @@ char	*get_next_line(int fd)
 	if (fd < 0 || read(fd, &check, 0) == -1)
 		return (NULL);
 	if (!buff_str)
-		buff_str = buff_str_init();
-	line_str = get_read_file(fd, buff_str);
+		buff_str = buff_str_init(buff_size);
+	line_str = get_read_file(fd, buff_str, buff_size);
 	if (line_str == NULL || *line_str == '\0')
 	{
 		buff_str = ft_free_ptr(buff_str);

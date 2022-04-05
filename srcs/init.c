@@ -4,9 +4,7 @@ t_img	*img_init(void *mlx_ptr, char *path)
 {
 	t_img	*img;
 
-	img = (t_img *)malloc(sizeof(t_img));
-	if (!img)
-		terminate(ERR_MALLOC, img);
+	img = (t_img *)mem_alloc(sizeof(t_img));
 	img->width = 0;
 	img->height = 0;
 	img->img_ptr = mlx_xpm_file_to_image(mlx_ptr, path,
@@ -18,9 +16,7 @@ t_sprite	*sprite_init(void *mlx_ptr)
 {
 	t_sprite	*sprite;
 
-	sprite = (t_sprite *)malloc(sizeof(t_sprite));
-	if (!sprite)
-		terminate(ERR_MALLOC, sprite);
+	sprite = (t_sprite *)mem_alloc(sizeof(t_sprite));
 	sprite->player = img_init(mlx_ptr, PLAYER);
 	sprite->background = img_init(mlx_ptr, BACKGROUND);
 	sprite->wall = NULL;
@@ -42,9 +38,7 @@ t_player	*player_init(void)
 {
 	t_player	*player;
 
-	player = (t_player *)malloc(sizeof(t_player));
-	if (!player)
-		terminate(ERR_MALLOC, player);
+	player = (t_player *)mem_alloc(sizeof(t_player));
 	player->x = 0;
 	player->y = 0;
 	player->step = STEP;

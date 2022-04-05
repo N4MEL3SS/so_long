@@ -2,26 +2,10 @@ cmake_minimum_required(VERSION 3.21)
 project(so_long C)
 
 set(CMAKE_C_STANDARD 99)
-add_compile_options(-DSTRINGPUTX11)
+#add_compile_options(-DSTRINGPUTX11)
 
 include_directories("includes/")
 include_directories("mlx_mac/")
-
-set(HEAD_SO_LONG includes/game.h
-		includes/error_msg.h
-		includes/events.h
-		includes/image.h
-		includes/keycode.h)
-
-set(SRC_LIST srcs/main.c
-		srcs/utils.c
-		srcs/close.c
-		srcs/key_control.c
-		srcs/init.c
-		srcs/render.c
-		srcs/validator.c
-		srcs/checker.c
-		srcs/hook.c srcs/get_next_line.c includes/get_next_line.h srcs/get_next_line_utils.c)
 
 set(HEAD_MLX mlx_mac/mlx.h
 		mlx_mac/mlx_int.h
@@ -38,6 +22,22 @@ set(SRC_MLX mlx_mac/mlx_init_loop.m
 		mlx_mac/mlx_png.c
 		mlx_mac/mlx_shaders.c
 		mlx_mac/mlx_xpm.c)
+
+set(HEAD_SO_LONG includes/game.h
+		includes/error_msg.h
+		includes/events.h
+		includes/sprite.h
+		includes/keycode.h includes/map.h)
+
+set(SRC_LIST srcs/main.c
+		srcs/utils.c
+		srcs/close.c
+		srcs/key_control.c
+		srcs/init.c
+		srcs/render.c
+		srcs/validator.c
+		srcs/checker.c
+		srcs/hook.c srcs/get_next_line.c includes/get_next_line.h srcs/get_next_line_utils.c srcs/parser.c srcs/new_gnl.c)
 
 find_library(MLX mlx mlx_mac/)
 message(${MLX})
