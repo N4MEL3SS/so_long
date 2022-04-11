@@ -17,11 +17,11 @@ t_sprite	*sprite_init(void *mlx_ptr)
 	t_sprite	*sprite;
 
 	sprite = (t_sprite *)mem_alloc(sizeof(t_sprite));
-	sprite->player = img_init(mlx_ptr, PLAYER);
-	sprite->background = img_init(mlx_ptr, BACKGROUND);
-	sprite->wall = NULL;
-	sprite->key = NULL;
-	sprite->enemy = NULL;
+	sprite->static_img[0] = img_init(mlx_ptr, BACKG_PATH);
+	sprite->static_img[1] = img_init(mlx_ptr, WALL_PATH);
+	sprite->collect_img = img_init(mlx_ptr, COLLECT_PATH);
+	sprite->exit_img = img_init(mlx_ptr, EXIT_PATH);
+	sprite->player_img = img_init(mlx_ptr, PLAYER_PATH);
 	return (sprite);
 }
 
@@ -47,13 +47,15 @@ t_player	*player_init(void)
 	return (player);
 }
 
-void	game_init(t_game *game)
+void	game_init(t_game *game, int x, int y)
 {
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
 		terminate(ERR_MALLOC, game->mlx_ptr);
+	game->width = x * SCALE;
+	game->height = y * SCALE;
 	game->win_ptr = mlx_new_window(game->mlx_ptr,
-			WIDTH, HEIGHT, "Game");
+		game->width, game->height, "Game");
 	game->player = player_init();
 	game->sprite = sprite_init(game->mlx_ptr);
 }

@@ -45,13 +45,14 @@ char	*ft_str_join(char *dst, char *src, ssize_t line_len)
 	char	*join;
 
 	if (*src == '\0')
-		return (src);
-	join = malloc(sizeof(char) * (++line_len));
+		return (dst);
+	line_len++;
+	join = malloc(sizeof(char) * (line_len));
 	if (!join)
 		return (NULL);
 	temp_join = join;
 	temp_dst = dst;
-	while (dst && *dst && --line_len)
+	while (*dst && --line_len)
 		*(join++) = *(dst++);
 	while (*src && --line_len)
 		*(join++) = *(src++);

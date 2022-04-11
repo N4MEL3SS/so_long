@@ -19,6 +19,9 @@
 # define WIDTH 480
 # define HEIGHT 480
 
+# define SCALE 32
+# define SCALE_X2 64
+
 # define WIDTH_MAX 2560
 # define HEIGHT_MAX 1325
 
@@ -27,7 +30,7 @@
 # define SHIFT_FLAG game->player->shift_flag
 
 # define KEY_ARR_SIZE 4
-# define STEP 3
+# define STEP 2
 # define STEP_RUN 2 * STEP
 
 typedef struct s_player
@@ -46,14 +49,16 @@ typedef struct s_game
 	t_map		*map;
 	t_player	*player;
 	t_sprite	*sprite;
+	int			width;
+	int			height;
 }				t_game;
 
 int		key_control_press(int key, t_game *game);
 int		key_control_release(int key, t_game *game);
 
-void	player_moving(const int *array, t_player *player);
+void	player_move(const int *array, t_game *game);
 
-void	game_init(t_game *game);
+void	game_init(t_game *game, int x, int y);
 
 void	hook(t_game *game);
 
@@ -61,9 +66,11 @@ int		render_loop(t_game *game);
 
 int		close_win(t_game *game);
 
+void	ft_error(void);
+void	ft_putendl(const char *str);
 size_t	ft_strlen(const char *str);
+
 void	*mem_alloc(size_t size);
-void	*ft_free_ptr(void *ptr);
 void	terminate(const char *str, void *address);
 
 #endif //GAME_H

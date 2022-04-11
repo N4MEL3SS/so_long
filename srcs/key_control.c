@@ -1,19 +1,19 @@
 #include "game.h"
 
-void	player_moving(const int *array, t_player *player)
+void	player_move(const int *array, t_game *game)
 {
-	player->x += array[2];
-	player->x -= array[0];
-	player->y += array[1];
-	player->y -= array[3];
-	if (player->x < 0)
-		player->x = 0;
-	else if (player->x > WIDTH - 32)
-		player->x = WIDTH - 32;
-	if (player->y < 0)
-		player->y = 0;
-	else if (player->y > HEIGHT - 32)
-		player->y = HEIGHT - 32;
+	game->player->x += array[2];
+	game->player->x -= array[0];
+	game->player->y += array[1];
+	game->player->y -= array[3];
+	if (game->player->x < SCALE)
+		game->player->x = SCALE;
+	else if (game->player->x > game->width - SCALE_X2)
+		game->player->x = game->width - SCALE_X2;
+	if (game->player->y < SCALE)
+		game->player->y = SCALE;
+	else if (game->player->y > game->height - SCALE_X2)
+		game->player->y = game->height - SCALE_X2;
 }
 
 int	key_control_press(int key, t_game *game)

@@ -30,14 +30,14 @@ set(HEAD_SO_LONG includes/game.h
 		includes/keycode.h includes/map.h)
 
 set(SRC_LIST srcs/main.c
-		srcs/utils.c
+		srcs/utils1.c
 		srcs/close.c
 		srcs/key_control.c
 		srcs/init.c
 		srcs/render.c
 		srcs/validator.c
 		srcs/checker.c
-		srcs/hook.c srcs/get_next_line.c includes/get_next_line.h srcs/get_next_line_utils.c srcs/parser.c srcs/new_gnl.c)
+		srcs/hook.c srcs/get_next_line.c includes/get_next_line.h srcs/get_next_line_utils.c srcs/map_parser.c srcs/map_size.c srcs/utils2.c)
 
 find_library(MLX mlx mlx_mac/)
 message(${MLX})
